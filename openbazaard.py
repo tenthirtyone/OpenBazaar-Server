@@ -11,7 +11,6 @@ from twisted.web.server import Site
 from twisted.web.static import File
 import stun
 import requests
-import threading
 
 from autobahn.twisted.websocket import listenWS
 
@@ -31,7 +30,6 @@ from dht.storage import PersistentStorage, ForgetfulStorage
 from market.profile import Profile
 from market.contracts import check_unfunded_for_payment
 from log import Logger, FileLogObserver
-from net.upnp import PortMapper
 from net.sslcontext import ChainedOpenSSLContextFactory
 from obelisk.client import LibbitcoinClient
 
@@ -58,8 +56,6 @@ def run(*args):
     logger = Logger(system="OpenBazaard")
 
     # NAT traversal
-    p = PortMapper()
-    threading.Thread(target=p.add_port_mapping, args=(PORT, PORT, "UDP")).start()
     logger.info("Finding NAT Type...")
     while True:
         # sometimes the stun server returns a code the client
