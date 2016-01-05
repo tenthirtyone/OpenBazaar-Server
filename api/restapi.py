@@ -206,6 +206,7 @@ class OpenBazaarAPI(APIResource):
                         "handle": f.metadata.handle,
                         "name": f.metadata.name,
                         "avatar_hash": f.metadata.avatar_hash.encode("hex"),
+                        "short_description": f.metadata.short_description,
                         "nsfw": f.metadata.nsfw
                     }
                     response["followers"].append(follower_json)
@@ -244,6 +245,7 @@ class OpenBazaarAPI(APIResource):
                         "handle": f.metadata.handle,
                         "name": f.metadata.name,
                         "avatar_hash": f.metadata.avatar_hash.encode("hex"),
+                        "short_description": f.metadata.short_description,
                         "nsfw": f.metadata.nsfw
                     }
                     response["following"].append(user_json)
